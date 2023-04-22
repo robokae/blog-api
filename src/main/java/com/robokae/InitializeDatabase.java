@@ -1,10 +1,10 @@
-package com.robokae.personalblog;
+package com.robokae;
 
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 
-import com.robokae.personalblog.model.Post;
+import com.robokae.common.model.Post;
 import com.robokae.personalblog.model.User;
 import com.robokae.personalblog.repository.PostRepository;
 import com.robokae.personalblog.repository.UserRepository;

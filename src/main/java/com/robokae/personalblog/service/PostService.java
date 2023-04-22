@@ -1,6 +1,6 @@
-package com.robokae.personalblog.service.postservice;
+package com.robokae.personalblog.service;
 
-import com.robokae.personalblog.model.Post;
+import com.robokae.common.model.Post;
 import com.robokae.personalblog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

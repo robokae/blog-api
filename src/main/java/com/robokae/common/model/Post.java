@@ -1,4 +1,4 @@
-package com.robokae.personalblog.model;
+package com.robokae.common.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +22,6 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String title;
     private Date publishDate;
     private String author;
