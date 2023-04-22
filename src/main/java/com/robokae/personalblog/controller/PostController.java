@@ -2,36 +2,34 @@ package com.robokae.personalblog.controller;
 
 import com.robokae.personalblog.model.Post;
 import com.robokae.personalblog.service.postservice.PostService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
-@RequestMapping("api/posts")
+@RequestMapping("/personalblog")
 public class PostController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(PostController.class);
 
     @Autowired
     private PostService postService;
 
-    @GetMapping("/all")
+    @GetMapping("/posts")
     public List<Post> getAllPosts() {
         return postService.getAllPosts();
     }
 
-    @GetMapping("/{title}")
+    @GetMapping("/post/{title}")
     public Post getPostByTitle(@PathVariable String title) {
         return postService.getPostByTitle(title);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/post")
     public void createPost(@RequestBody Post post) {
-        LOGGER.info("Saving post: {}", post);
+        log.info("Saving post: {}", post);
         postService.createPost(post);
     }
 

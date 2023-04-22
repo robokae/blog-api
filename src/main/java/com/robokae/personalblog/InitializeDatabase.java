@@ -48,7 +48,12 @@ public class InitializeDatabase implements CommandLineRunner  {
         authorities.add(new SimpleGrantedAuthority(adminRole));
         User admin = new User(adminUser, adminPassword, authorities);
 
-        Post post = new Post("My First Post", new Date(), "Alexander Hom", "This is my first post!");
+        Post post = Post.builder()
+                .title("My First Post")
+                .publishDate(new Date())
+                .author("Alexander Hom")
+                .body("This is my first post!")
+                .build();
 
         userRepository.save(admin);
         postRepository.save(post);

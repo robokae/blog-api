@@ -5,12 +5,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Post {
     
     @Id
@@ -21,13 +27,4 @@ public class Post {
     private Date publishDate;
     private String author;
     private String body;
-
-    public Post() {}
-
-    public Post(String title, Date publishDate, String author, String body) {
-        this.title = title;
-        this.publishDate = publishDate;
-        this.author = author;
-        this.body = body;
-    }
 }
