@@ -1,10 +1,10 @@
 package com.robokae.blog.repository;
 
 import com.robokae.common.model.Post;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PostRepository extends JpaRepository<Post, Long> {
+import java.util.Optional;
 
-    Post findByTitle(String title);
+public interface PostRepository extends JpaRepository<Post, Long> {
+    Optional<Post> findByTitle(String title);
 }
