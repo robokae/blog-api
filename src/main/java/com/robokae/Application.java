@@ -6,10 +6,10 @@ import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @PropertySource("classpath:application-${spring.profiles.active:default}.properties")
-public class ApiApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApiApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
