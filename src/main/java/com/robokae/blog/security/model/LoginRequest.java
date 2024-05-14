@@ -1,4 +1,4 @@
-package com.robokae.personalblog.security.model;
+package com.robokae.blog.security.model;
 
 import lombok.Data;
 

@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.HashSet;
 
 import com.robokae.common.model.Post;
-import com.robokae.personalblog.model.User;
-import com.robokae.personalblog.repository.PostRepository;
-import com.robokae.personalblog.repository.UserRepository;
+import com.robokae.blog.model.User;
+import com.robokae.blog.repository.PostRepository;
+import com.robokae.blog.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

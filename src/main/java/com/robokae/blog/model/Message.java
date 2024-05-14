@@ -1,4 +1,4 @@
-package com.robokae.personalblog.model;
+package com.robokae.blog.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

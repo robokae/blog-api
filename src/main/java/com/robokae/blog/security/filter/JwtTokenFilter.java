@@ -1,4 +1,4 @@
-package com.robokae.personalblog.security.filter;
+package com.robokae.blog.security.filter;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;

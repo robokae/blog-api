@@ -1,4 +1,4 @@
-package com.robokae.personalblog.repository;
+package com.robokae.blog.repository;
 
 import com.robokae.common.model.Post;
 

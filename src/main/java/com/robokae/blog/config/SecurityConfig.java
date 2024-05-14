@@ -1,7 +1,7 @@
-package com.robokae.personalblog.config;
+package com.robokae.blog.config;
 
-import com.robokae.personalblog.repository.UserRepository;
-import com.robokae.personalblog.security.filter.JwtTokenFilter;
+import com.robokae.blog.security.filter.JwtTokenFilter;
+import com.robokae.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,6 @@
-package com.robokae.personalblog.controller;
+package com.robokae.blog.controller;
 
-import com.robokae.personalblog.security.model.LoginRequest;
+import com.robokae.blog.security.model.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

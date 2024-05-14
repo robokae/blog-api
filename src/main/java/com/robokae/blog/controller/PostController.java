@@ -1,7 +1,7 @@
-package com.robokae.personalblog.controller;
+package com.robokae.blog.controller;
 
+import com.robokae.blog.service.PostService;
 import com.robokae.common.model.Post;
-import com.robokae.personalblog.service.PostService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;

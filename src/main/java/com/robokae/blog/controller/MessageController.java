@@ -1,6 +1,6 @@
-package com.robokae.personalblog.controller;
+package com.robokae.blog.controller;
 
-import com.robokae.personalblog.model.Message;
+import com.robokae.blog.model.Message;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

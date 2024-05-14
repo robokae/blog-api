@@ -1,4 +1,4 @@
-package com.robokae.personalblog.model;
+package com.robokae.blog.model;
 
 import java.util.Collection;
 

@@ -1,4 +1,4 @@
-package com.robokae.personalblog.controller;
+package com.robokae.blog.controller;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;

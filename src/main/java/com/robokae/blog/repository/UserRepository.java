@@ -1,6 +1,6 @@
-package com.robokae.personalblog.repository;
+package com.robokae.blog.repository;
 
-import com.robokae.personalblog.model.User;
+import com.robokae.blog.model.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

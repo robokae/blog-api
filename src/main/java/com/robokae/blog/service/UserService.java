@@ -1,4 +1,4 @@
-package com.robokae.personalblog.service;
+package com.robokae.blog.service;
 
 import org.springframework.stereotype.Service;
 
