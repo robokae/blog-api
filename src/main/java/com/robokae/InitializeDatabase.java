@@ -3,7 +3,7 @@ package com.robokae;
 import java.util.Date;
 
 import com.robokae.blog.repository.PostRepository;
-import com.robokae.common.model.Post;
+import com.robokae.blog.model.Post;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

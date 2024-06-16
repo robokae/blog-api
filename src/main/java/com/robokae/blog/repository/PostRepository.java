@@ -1,6 +1,6 @@
 package com.robokae.blog.repository;
 
-import com.robokae.common.model.Post;
+import com.robokae.blog.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

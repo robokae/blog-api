@@ -1,4 +1,4 @@
-package com.robokae.common.model;
+package com.robokae.blog.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

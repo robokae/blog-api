@@ -1,7 +1,7 @@
 package com.robokae.blog.controller;
 
 import com.robokae.blog.service.PostService;
-import com.robokae.common.model.Post;
+import com.robokae.blog.model.Post;
 import com.robokae.common.model.Response;
 import com.robokae.common.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class PostController {
     }
 
     @GetMapping("/post/{title}")
-    public ResponseEntity<Response> getPost(@PathVariable String title) {
+    public ResponseEntity<Response> getPost(@PathVariable("title") String title) {
         Post post = postService.getPost(title);
         Response response = ResponseUtil.getResponse(HttpStatus.OK, "", post);
         return new ResponseEntity<>(response, response.getStatus());
@@ -40,14 +40,14 @@ public class PostController {
     }
 
     @PutMapping("/post/{title}")
-    public ResponseEntity<Response> updatePost(@PathVariable String title, @RequestBody Post post) {
+    public ResponseEntity<Response> updatePost(@PathVariable("title") String title, @RequestBody Post post) {
         postService.updatePost(title, post);
         Response response = ResponseUtil.getResponse(HttpStatus.CREATED, "Successfully updated post", "");
         return new ResponseEntity<>(response, response.getStatus());
     }
 
     @DeleteMapping("/post/{title}")
-    public ResponseEntity<Response> deletePost(@PathVariable String title) {
+    public ResponseEntity<Response> deletePost(@PathVariable("title") String title) {
         postService.deletePost(title);
         Response response = ResponseUtil.getResponse(HttpStatus.OK, "Successfully deleted post", "");
         return new ResponseEntity<>(response, response.getStatus());
