@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/coffeeblog")
+@RequestMapping("/api/blog")
 public class PostController {
 
     @Autowired
@@ -26,8 +26,8 @@ public class PostController {
     }
 
     @GetMapping("/post/{title}")
-    public ResponseEntity<Response> getPostByTitle(@PathVariable String title) {
-        Post post = postService.getPostByTitle(title);
+    public ResponseEntity<Response> getPost(@PathVariable String title) {
+        Post post = postService.getPost(title);
         Response response = ResponseUtil.getResponse(HttpStatus.OK, "", post);
         return new ResponseEntity<>(response, response.getStatus());
     }

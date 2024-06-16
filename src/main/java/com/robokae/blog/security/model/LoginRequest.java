@@ -1,8 +1,7 @@
 package com.robokae.blog.security.model;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import javax.validation.constraints.NotNull;
 
 @Data
 public class LoginRequest {

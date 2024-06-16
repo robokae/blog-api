@@ -2,13 +2,13 @@ package com.robokae.common.exception;
 
 import com.robokae.common.model.Response;
 import com.robokae.common.util.ResponseUtil;
+import jakarta.persistence.EntityExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.persistence.EntityExistsException;
 import java.util.NoSuchElementException;
 
 @RestControllerAdvice

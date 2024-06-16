@@ -29,12 +29,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
-        http.authorizeRequests()
-                .antMatchers("/admin/**").authenticated()
-                .antMatchers("/api/**").permitAll()
-                .and()
-                .csrf()
-                .disable();
+        http.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
+                authorizationManagerRequestMatcherRegistry
+                        .requestMatchers("/admin/**").authenticated()
+                        .requestMatchers("/api/**").permitAll());
 
         return http.build();
     }

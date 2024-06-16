@@ -3,10 +3,10 @@ package com.robokae.blog.service;
 import com.robokae.blog.repository.PostRepository;
 import com.robokae.common.model.Post;
 import com.robokae.common.model.PostError;
+import jakarta.persistence.EntityExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityExistsException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -23,7 +23,7 @@ public class PostService {
         return postRepository.findAll();
     }
 
-    public Post getPostByTitle(String title) {
+    public Post getPost(String title) {
         return postRepository.findByTitle(title).orElseThrow(() ->
                 new NoSuchElementException(getErrorMessage(POST_DOES_NOT_EXIST, title)));
     }
