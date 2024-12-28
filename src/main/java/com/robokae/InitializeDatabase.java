@@ -17,12 +17,11 @@ public class InitializeDatabase implements CommandLineRunner  {
 
     @Override
     public void run(String... args) {
-//        postRepository.deleteAll();
         Post post = Post.builder()
                 .title("My First Post")
                 .publishDate(new Date())
                 .author("Alexander Hom")
-                .body("This is my first post!")
+                .postMarkdown("This is my first post!")
                 .build();
         postRepository.save(post);
     }

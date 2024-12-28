@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,7 +23,11 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
-    private Date publishDate;
     private String author;
-    private String body;
+    private String postMarkdown;
+    private List<String> tags;
+    private Date createdAt;
+    private Date lastModified;
+    private Date publishDate;
+    private Status status;
 }
