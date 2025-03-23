@@ -1,4 +1,4 @@
-package com.robokae.common.model;
+package com.robokae.blog.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

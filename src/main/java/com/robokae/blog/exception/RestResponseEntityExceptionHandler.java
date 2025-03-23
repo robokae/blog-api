@@ -1,6 +1,6 @@
-package com.robokae.common.exception;
+package com.robokae.blog.exception;
 
-import com.robokae.common.model.Response;
+import com.robokae.blog.model.Response;
 import jakarta.persistence.EntityExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

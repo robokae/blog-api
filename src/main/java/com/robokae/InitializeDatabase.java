@@ -21,7 +21,7 @@ public class InitializeDatabase implements CommandLineRunner  {
                 .title("My First Post")
                 .publishDate(new Date())
                 .author("Alexander Hom")
-                .postMarkdown("This is my first post!")
+                .content("This is my first post!")
                 .build();
         postRepository.save(post);
     }

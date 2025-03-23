@@ -2,7 +2,7 @@ package com.robokae.blog.controller;
 
 import com.robokae.blog.service.PostService;
 import com.robokae.blog.model.Post;
-import com.robokae.common.model.Response;
+import com.robokae.blog.model.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +22,7 @@ public class PostController {
         List<Post> posts = postService.getAllPosts();
         Response response = Response.builder()
                 .status(HttpStatus.OK.value())
-                .data(posts)
-                .build();
+                .data(posts).build();
         return ResponseEntity.ok(response);
     }
 
@@ -32,8 +31,7 @@ public class PostController {
         Post post = postService.getPost(title);
         Response response = Response.builder()
                 .status(HttpStatus.OK.value())
-                .data(post)
-                .build();
+                .data(post).build();
         return ResponseEntity.ok(response);
     }
 
@@ -42,8 +40,7 @@ public class PostController {
         postService.savePost(post);
         Response response = Response.builder()
                 .status(HttpStatus.OK.value())
-                .message("Successfully created post")
-                .build();
+                .message("Successfully created post").build();
         return ResponseEntity.ok(response);
     }
 
@@ -52,8 +49,7 @@ public class PostController {
         postService.updatePost(title, post);
         Response response = Response.builder()
                 .status(HttpStatus.CREATED.value())
-                .message("Successfully updated post")
-                .build();
+                .message("Successfully updated post").build();
         return ResponseEntity.ok(response);
     }
 
@@ -62,8 +58,7 @@ public class PostController {
         postService.deletePost(title);
         Response response = Response.builder()
                 .status(HttpStatus.OK.value())
-                .message("Successfully deleted post")
-                .build();
+                .message("Successfully deleted post").build();
         return ResponseEntity.ok(response);
     }
 }

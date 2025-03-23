@@ -6,6 +6,7 @@ import jakarta.persistence.EntityExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -40,6 +41,7 @@ public class PostService {
         postRepository.findByTitle(post.getTitle()).ifPresent(p -> {
             throw new EntityExistsException(String.format(ERROR_MESSAGE_FORMAT, POST_ALREADY_EXISTS, p.getTitle()));
         });
+        post.setCreatedAt(new Date());
         postRepository.save(post);
     }
 
