@@ -1,7 +1,6 @@
 package com.robokae.common.exception;
 
 import com.robokae.common.model.Response;
-import com.robokae.common.util.ResponseUtil;
 import jakarta.persistence.EntityExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,19 +15,25 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler(NoSuchElementException.class)
     protected ResponseEntity<Response> handleNoSuchElement(NoSuchElementException e) {
-        Response response = ResponseUtil.getResponse(HttpStatus.NOT_FOUND, e.getMessage(), "");
-        return new ResponseEntity<>(response, response.getStatus());
+        Response response = Response.builder()
+                .status(HttpStatus.NOT_FOUND.value())
+                .message(e.getMessage()).build();
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(EntityExistsException.class)
     protected ResponseEntity<Response> handleElementAlreadyExists(EntityExistsException e) {
-        Response response = ResponseUtil.getResponse(HttpStatus.BAD_REQUEST, e.getMessage(), "");
-        return new ResponseEntity<>(response, response.getStatus());
+        Response response = Response.builder()
+                .status(HttpStatus.BAD_REQUEST.value())
+                .message(e.getMessage()).build();
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<Response> handleException(Exception e) {
-        Response response = ResponseUtil.getResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), "");
-        return new ResponseEntity<>(response, response.getStatus());
+        Response response = Response.builder()
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .message(e.getMessage()).build();
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
