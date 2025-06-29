@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.robokae.blog.constant.PostConstants.*;
+
 @RestController
 @RequestMapping("/api")
 public class PostController {
@@ -44,7 +46,7 @@ public class PostController {
         postService.createPost(post);
         Response response = Response.builder()
                 .status(HttpStatus.OK.value())
-                .message("Successfully created post").build();
+                .message(POST_CREATE_SUCCESSFUL).build();
         return ResponseEntity.ok(response);
     }
 
@@ -52,8 +54,8 @@ public class PostController {
     public ResponseEntity<Response> updatePost(@RequestBody Post post) {
         postService.updatePost(post);
         Response response = Response.builder()
-                .status(HttpStatus.CREATED.value())
-                .message("Successfully updated post").build();
+                .status(HttpStatus.NO_CONTENT.value())
+                .message(POST_UPDATE_SUCCESSFUL).build();
         return ResponseEntity.ok(response);
     }
 
@@ -61,8 +63,8 @@ public class PostController {
     public ResponseEntity<Response> deletePost(@PathVariable("title") String title) {
         postService.deletePost(title);
         Response response = Response.builder()
-                .status(HttpStatus.OK.value())
-                .message("Successfully deleted post").build();
+                .status(HttpStatus.NO_CONTENT.value())
+                .message(POST_DELETE_SUCCESSFUL).build();
         return ResponseEntity.ok(response);
     }
 }
