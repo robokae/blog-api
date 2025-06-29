@@ -3,51 +3,49 @@ package com.robokae.blog.service;
 import com.robokae.blog.repository.PostRepository;
 import com.robokae.blog.model.Post;
 import jakarta.persistence.EntityExistsException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static com.robokae.blog.constant.PostConstants.POST_ALREADY_EXISTS;
-import static com.robokae.blog.constant.PostConstants.POST_DOES_NOT_EXIST;
+import static com.robokae.blog.constant.PostConstants.*;
 
 @Service
 public class PostService {
 
-    @Autowired
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
-    private final String ERROR_MESSAGE_FORMAT = "%s: %s";
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
 
-    public List<Post> getAllPosts() {
+    public List<Post> fetchAllPosts() {
         return postRepository.findAll();
     }
 
-    public Post getPost(String title) {
-        return postRepository.findByTitle(title).orElseThrow(() ->
-                new NoSuchElementException(String.format(ERROR_MESSAGE_FORMAT, POST_DOES_NOT_EXIST, title)));
+    public Post fetchPostByTitle(String title) {
+        return postRepository.findByTitle(title).orElseThrow(() -> new NoSuchElementException(POST_DOES_NOT_EXIST));
     }
 
-    public void updatePost(String title, Post updatedPost) {
-        Post currentPost = postRepository.findByTitle(title).orElseThrow(() ->
-                new NoSuchElementException(String.format(ERROR_MESSAGE_FORMAT, POST_DOES_NOT_EXIST, title)));
+    public void updatePost(Post updatedPost) {
+        Post currentPost = postRepository.findByTitle(updatedPost.getTitle()).orElseThrow(() ->
+                new NoSuchElementException(POST_DOES_NOT_EXIST));
         postRepository.deleteById(currentPost.getId());
+        updatedPost.setLastModified(new Date());
         postRepository.saveAndFlush(updatedPost);
     }
 
-    public void savePost(Post post) {
+    public void createPost(Post post) {
         postRepository.findByTitle(post.getTitle()).ifPresent(p -> {
-            throw new EntityExistsException(String.format(ERROR_MESSAGE_FORMAT, POST_ALREADY_EXISTS, p.getTitle()));
+            throw new EntityExistsException(DUPLICATE_TITLE);
         });
         post.setCreatedAt(new Date());
         postRepository.save(post);
     }
 
     public void deletePost(String title) {
-        Post post = postRepository.findByTitle(title).orElseThrow(() ->
-            new NoSuchElementException(String.format(ERROR_MESSAGE_FORMAT, POST_DOES_NOT_EXIST, title)));
+        Post post = postRepository.findByTitle(title).orElseThrow(() -> new NoSuchElementException(POST_DOES_NOT_EXIST));
         postRepository.deleteById(post.getId());
     }
 }

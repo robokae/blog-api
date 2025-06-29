@@ -1,9 +1,8 @@
 package com.robokae.blog.controller;
 
-import com.robokae.blog.service.PostService;
 import com.robokae.blog.model.Post;
 import com.robokae.blog.model.Response;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.robokae.blog.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,15 +10,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/blog")
+@RequestMapping("/api")
 public class PostController {
 
-    @Autowired
-    private PostService postService;
+    private final PostService postService;
+
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
 
     @GetMapping("/posts")
-    public ResponseEntity<Response> getAllPosts() {
-        List<Post> posts = postService.getAllPosts();
+    public ResponseEntity<Response> fetchPosts(@RequestParam(required = false) String page,
+                                               @RequestParam(required = false) String sortBy) {
+
+        List<Post> posts = postService.fetchAllPosts();
         Response response = Response.builder()
                 .status(HttpStatus.OK.value())
                 .data(posts).build();
@@ -27,8 +31,8 @@ public class PostController {
     }
 
     @GetMapping("/post/{title}")
-    public ResponseEntity<Response> getPost(@PathVariable("title") String title) {
-        Post post = postService.getPost(title);
+    public ResponseEntity<Response> fetchPost(@PathVariable("title") String title) {
+        Post post = postService.fetchPostByTitle(title);
         Response response = Response.builder()
                 .status(HttpStatus.OK.value())
                 .data(post).build();
@@ -37,16 +41,16 @@ public class PostController {
 
     @PostMapping("/post")
     public ResponseEntity<Response> createPost(@RequestBody Post post) {
-        postService.savePost(post);
+        postService.createPost(post);
         Response response = Response.builder()
                 .status(HttpStatus.OK.value())
                 .message("Successfully created post").build();
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/post/{title}")
-    public ResponseEntity<Response> updatePost(@PathVariable("title") String title, @RequestBody Post post) {
-        postService.updatePost(title, post);
+    @PutMapping("/post")
+    public ResponseEntity<Response> updatePost(@RequestBody Post post) {
+        postService.updatePost(post);
         Response response = Response.builder()
                 .status(HttpStatus.CREATED.value())
                 .message("Successfully updated post").build();
