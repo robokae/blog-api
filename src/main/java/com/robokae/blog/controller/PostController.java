@@ -1,8 +1,9 @@
 package com.robokae.blog.controller;
 
+import com.robokae.blog.dto.PostRequest;
 import com.robokae.blog.model.Post;
-import com.robokae.blog.model.Response;
 import com.robokae.blog.service.PostService;
+import com.robokae.blog.util.ResponseUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,49 +23,33 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public ResponseEntity<Response> fetchPosts(@RequestParam(required = false) String page,
-                                               @RequestParam(required = false) String sortBy) {
-
+    public ResponseEntity<Object> fetchPosts(@RequestParam(required = false) String page,
+                                             @RequestParam(required = false) String sortBy) {
         List<Post> posts = postService.fetchAllPosts();
-        Response response = Response.builder()
-                .status(HttpStatus.OK.value())
-                .data(posts).build();
-        return ResponseEntity.ok(response);
+        return ResponseUtil.createResponse(HttpStatus.OK, posts);
     }
 
     @GetMapping("/post/{title}")
-    public ResponseEntity<Response> fetchPost(@PathVariable("title") String title) {
+    public ResponseEntity<Object> fetchPost(@PathVariable("title") String title) {
         Post post = postService.fetchPostByTitle(title);
-        Response response = Response.builder()
-                .status(HttpStatus.OK.value())
-                .data(post).build();
-        return ResponseEntity.ok(response);
+        return ResponseUtil.createResponse(HttpStatus.OK, post);
     }
 
     @PostMapping("/post")
-    public ResponseEntity<Response> createPost(@RequestBody Post post) {
-        postService.createPost(post);
-        Response response = Response.builder()
-                .status(HttpStatus.OK.value())
-                .message(POST_CREATE_SUCCESSFUL).build();
-        return ResponseEntity.ok(response);
+    public ResponseEntity<Object> createPost(@RequestBody PostRequest postRequest) {
+        postService.createPost(postRequest);
+        return ResponseUtil.createResponse(HttpStatus.OK, null, POST_CREATE_SUCCESSFUL);
     }
 
     @PutMapping("/post")
-    public ResponseEntity<Response> updatePost(@RequestBody Post post) {
+    public ResponseEntity<Object> updatePost(@RequestBody Post post) {
         postService.updatePost(post);
-        Response response = Response.builder()
-                .status(HttpStatus.NO_CONTENT.value())
-                .message(POST_UPDATE_SUCCESSFUL).build();
-        return ResponseEntity.ok(response);
+        return ResponseUtil.createResponse(HttpStatus.NO_CONTENT, null, POST_UPDATE_SUCCESSFUL);
     }
 
     @DeleteMapping("/post/{title}")
-    public ResponseEntity<Response> deletePost(@PathVariable("title") String title) {
+    public ResponseEntity<Object> deletePost(@PathVariable("title") String title) {
         postService.deletePost(title);
-        Response response = Response.builder()
-                .status(HttpStatus.NO_CONTENT.value())
-                .message(POST_DELETE_SUCCESSFUL).build();
-        return ResponseEntity.ok(response);
+        return ResponseUtil.createResponse(HttpStatus.NO_CONTENT, null, POST_DELETE_SUCCESSFUL);
     }
 }
